@@ -30,7 +30,7 @@ var messageschema = new mongoose.Schema({
 
 //for encrypt data
 messageschema.plugin(mongooseFieldEncryption, {
-    fields: ["from", "to", "messages", "time", "date"],
+    fields: ["from","messages", "time", "date"],
     secret: process.env.messagesecretkey,
     saltGenerator: function(secret) {
         return "1234567890123456";
