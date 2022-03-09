@@ -103,12 +103,13 @@ let current_date = date + ":" + month + ":" + year
 router.post('/sendmessage', authenticate, function(req, res) {
     //let encryptedmessage = cryptr.encrypt(req.body.messages);
         var isaccountpresent = await ragister.find({ email: req.body.to }).countDocuments()
-if (isaccountpresent <= 0) {
-        res.send("THE USER " + req.body.to + " IS NOT RAGISTER WITH US SORRY...")
-    }
+
     if (req.body.to == req.user_email) {
         res.json({ "NOT ALLOWED": "YOU ARE TRYING TO SEND MESSAGE TO YOURSELF..." })
-    } else {
+    }
+    if (isaccountpresent <= 0) {
+        res.send("THE USER " + req.body.to + " IS NOT RAGISTER WITH US SORRY...")
+    }else {
         new message({
                 from: req.user_email,
                 to: req.body.to,
