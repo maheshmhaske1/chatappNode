@@ -103,7 +103,7 @@ let current_date = date + ":" + month + ":" + year
 router.post('/sendmessage', authenticate, function(req, res) {
     //let encryptedmessage = cryptr.encrypt(req.body.messages);
     if (req.body.to == req.user_email) {
-        res.json({ "error": "error" })
+        res.json({ "NOT ALLOWED": "YOU ARE TRYING TO SEND MESSAGE TO YOURSELF..." })
     } else {
         new message({
                 from: req.user_email,
